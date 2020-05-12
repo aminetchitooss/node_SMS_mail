@@ -1,4 +1,4 @@
-#this is a node mailer service
+# this is a node mailer service
 
 >FOR SETTING UP THE gmail auth
 
