@@ -1,0 +1,22 @@
+{
+  "name": "node_mail_sms",
+  "version": "1.0.0",
+  "description": "for sending emails and sms",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "tchitooss",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.6",
+    "nodemon": "^2.0.3",
+    "xoauth2": "^1.2.0"
+  }
+}
