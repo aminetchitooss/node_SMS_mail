@@ -77,9 +77,8 @@ app.post('/sendMail', async (req, res) => {
         subject: req.body.subject ? req.body.subject : "Hello ✔",
         html: req.body.body
     }
-    return sendMail(mailOutput).then(response=>{
-        return res.end(JSON.stringify(response))
-    })
+    const response = await sendMail(mailOutput)
+     res.end(JSON.stringify(response))
 })
 app.post('/sendText', (req, res) => {
 
@@ -117,7 +116,7 @@ function sendMail(pMail) {
                 resolve(err)
             } else {
                 console.log('Message sent: %s', info.messageId);
-                resolve(nodemailer.getTestMessageUrl(info))
+                resolve(info.response)
             }
         });
     });
