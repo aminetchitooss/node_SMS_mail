@@ -25,23 +25,23 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-const allowedOrigins = [
-    'https://tchitosmailer.herokuapp.com/'
-    ,'http://localhost:' + port
-];
+// const allowedOrigins = [
+//     'https://tchitosmailer.herokuapp.com'
+//     , 'http://localhost:' + port
+// ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    }
-}));
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         // allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indexOf(origin) === -1) {
+//             var msg = 'The CORS policy for this site does not ' +
+//                 'allow access from the specified Origin.';
+//             return callback(new Error(msg), false);
+//         }
+//         return callback(null, true);
+//     }
+// }));
 
 app.listen(port, () => console.log('server running on' + port))
 
@@ -85,10 +85,10 @@ app.post('/sendText', (req, res) => {
 
 })
 
-app.post('/sendMailForm', async (req, res) => {
+app.post('/sendMailForm',  (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) {
-        return error
+        return res.end(JSON.stringify(error))
     }
 
     // setup email data with unicode symbols
@@ -108,9 +108,15 @@ app.post('/sendMailForm', async (req, res) => {
     //     res.end('ok')
     //     res.render('sent', { msg: 'Email has been sent' });
     // });
-    const response = await sendMail(mailOptions)
+    return sendMail(mailOptions).then(response=>{
+
+        if (response == "ok")
+            return res.render('sent', { msg: 'Email has been sent' });
+        else {
+            return res.end(response)
+        }
+    })
     //  res.end(JSON.stringify(response))
-    res.render('sent', { msg: 'Email has been sent' });
 });
 
 function sendMail(pMail, pForm) {
@@ -120,7 +126,7 @@ function sendMail(pMail, pForm) {
                 resolve(err)
             } else {
                 console.log('Message sent: %s', info.messageId);
-                resolve(info.response)
+                resolve("ok")
             }
         });
     });
