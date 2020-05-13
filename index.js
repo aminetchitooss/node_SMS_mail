@@ -78,7 +78,7 @@ app.post('/sendMail', async (req, res) => {
         html: req.body.body
     }
     const response = await sendMail(mailOutput)
-    res.end(JSON.stringify(response))
+    return res.end(JSON.stringify(response))
 })
 app.post('/sendText', (req, res) => {
 
