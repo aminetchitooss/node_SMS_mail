@@ -87,9 +87,7 @@ app.post('/sendText', (req, res) => {
 app.post('/sendMailForm', async (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) {
-        res.render('contact');
-        res.end(JSON.stringify(error.details[0].message))
-        // alert(error.details[0].message)
+        return error
     }
 
     // setup email data with unicode symbols
@@ -111,7 +109,7 @@ app.post('/sendMailForm', async (req, res) => {
     // });
     const response = await sendMail(mailOptions)
     //  res.end(JSON.stringify(response))
-     return res.render('sent', { msg: 'Email has been sent' });
+      res.render('sent', { msg: 'Email has been sent' });
 });
 
 function sendMail(pMail, pForm) {
