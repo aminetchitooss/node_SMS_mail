@@ -17,9 +17,15 @@
   
   ### then run these commands 
   
-    npm i
-    
-    npm start
+```bash
+npm i
+
+npm start
+
+#with nodemone (restart server with every save)
+npm run dev
+
+```
 
 
 >FOR SETTING UP THE GMAIL AUTH PROCESS: --> 
