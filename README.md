@@ -1,4 +1,4 @@
-# This is an example of a node mailer service and I'm using
+# This is an example of a node mailer service (a wysiwyg form + Api post) Test it with link above
 
 ## 1- Modules used below
 
@@ -14,8 +14,7 @@
 ## 2- how to use
   
   Make sure to set up a ".env" config file to set up variables like mail and password
-  
-  ### then run these commands 
+  then run these commands 
   
 ```bash
 npm i
