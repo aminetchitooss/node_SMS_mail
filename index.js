@@ -84,10 +84,11 @@ app.post('/sendText', (req, res) => {
 
 })
 
-app.post('/sendMailForm', (req, res) => {
+app.post('/sendMailForm', async (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) {
         res.render('contact');
+        res.end(JSON.stringify(error.details[0].message))
         // alert(error.details[0].message)
     }
 
@@ -101,15 +102,19 @@ app.post('/sendMailForm', (req, res) => {
     };
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        res.render('sent', { msg: 'Email has been sent' });
-    });
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //         return console.log(error);
+    //     }
+    //     res.end('ok')
+    //     res.render('sent', { msg: 'Email has been sent' });
+    // });
+    const response = await sendMail(mailOptions)
+    //  res.end(JSON.stringify(response))
+     return res.render('sent', { msg: 'Email has been sent' });
 });
 
-function sendMail(pMail) {
+function sendMail(pMail, pForm) {
     return new Promise((resolve, reject) => {
         transporter.sendMail(pMail, (err, info) => {
             if (err) {
