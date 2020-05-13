@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
     "nodemailer": "^6.4.6",
     "nodemon": "^2.0.3",
     "xoauth2": "^1.2.0"

@@ -2,11 +2,24 @@ const nodeMailer = require('nodemailer');
 const xoauth2 = require('xoauth2');
 const bodyParser = require('body-parser');
 const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
 const Joi = require('@hapi/joi');
 var cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 3000
 const app = express();
+
+
+// View engine setup
+app.engine('handlebars', exphbs({
+    defaultLayout: '',
+}));
+app.set('view engine', 'handlebars');
+
+// Static folder
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 //middle ware config
 app.use(bodyParser.json())
@@ -43,13 +56,17 @@ const transporter = nodeMailer.createTransport({
         //     refreshToken: process.env.REFRESH_TOKEN,
         //     // accessToken: process.env.ACCESS_TOKEN
         // })
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
 
 app.get('/', (req, res) => {
-    res.end('hello')
-})
+    res.render('contact');
+});
+
 app.post('/sendMail', async (req, res) => {
     const { error } = validateMailData(req.body)
     if (error) { return res.status(403).send(error.details[0].message) }
@@ -67,13 +84,39 @@ app.post('/sendText', (req, res) => {
 
 })
 
+app.post('/sendMailForm', (req, res) => {
+    const { error } = validateMailDataForm(req.body)
+    if (error) {
+        res.render('contact');
+        // alert(error.details[0].message)
+    }
+
+    // setup email data with unicode symbols
+    let mailOptions = {
+        from: process.env.MAIL,
+        to: req.body.email, // list of receivers
+        subject: 'Node Contact Request', // Subject line
+        text: 'Hello from Form', // plain text body
+        html: req.body.message // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        res.render('sent', { msg: 'Email has been sent' });
+    });
+});
+
 function sendMail(pMail) {
     return new Promise((resolve, reject) => {
         transporter.sendMail(pMail, (err, info) => {
             if (err) {
                 resolve(err)
             } else {
-                resolve(info.response)
+                console.log('Message sent: %s', info.messageId);
+                resolve(nodemailer.getTestMessageUrl(info))
             }
         });
     });
@@ -84,6 +127,13 @@ function validateMailData(pData) {
         to: Joi.string().email().required(),
         subject: Joi.string().required(),
         body: Joi.string().required()
+    })
+    return schema.validate(pData)
+}
+function validateMailDataForm(pData) {
+    const schema = Joi.object({
+        email: Joi.string().email().required(),
+        message: Joi.string().required()
     })
     return schema.validate(pData)
 }
