@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const Joi = require('@hapi/joi');
 var cors = require('cors');
+var fetch = require('fetch').fetchUrl;
 require('dotenv').config();
 const port = process.env.PORT || 3000
 const app = express();
@@ -64,8 +65,9 @@ const transporter = nodeMailer.createTransport({
 });
 
 
-app.get('/', (req, res) => {
-    res.render('contact');
+app.get('/', async (req, res) => {
+    const { ip } = await getIp()
+    res.render('contact', { ip });
 });
 
 app.post('/sendMail', async (req, res) => {
@@ -85,7 +87,7 @@ app.post('/sendText', (req, res) => {
 
 })
 
-app.post('/sendMailForm',  (req, res) => {
+app.post('/sendMailForm', (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) {
         return res.end(JSON.stringify(error))
@@ -108,7 +110,7 @@ app.post('/sendMailForm',  (req, res) => {
     //     res.end('ok')
     //     res.render('sent', { msg: 'Email has been sent' });
     // });
-    return sendMail(mailOptions).then(response=>{
+    return sendMail(mailOptions).then(response => {
 
         if (response == "ok")
             return res.render('sent', { msg: 'Email has been sent' });
@@ -129,6 +131,13 @@ function sendMail(pMail, pForm) {
                 resolve("ok")
             }
         });
+    });
+}
+function getIp() {
+    return new Promise((resolve, reject) => {
+        fetch('https://api.ipify.org/?format=json', (error, meta, body) => {
+            resolve(JSON.parse(body.toString()))
+        })
     });
 }
 

@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 :root {
-  --main-bg-color: #3e59ad;
-  --main-text-color: #072f5f;
-  --main-border-color: #6374a7;
+  --main-bg-color: #74b9ff;
+  --main-text-color: #1b3658;
+  --main-border-color: #00cec9;
 }
 
 body {
@@ -28,7 +28,7 @@ ul {
 
 .brand {
   text-align: center;
-  margin-top: 0;
+  margin: 0;
 }
 
 .brand span {
@@ -123,4 +123,22 @@ button {
   color: black;
   background-position: left bottom;
   cursor: pointer;
+}
+.ip em {
+  text-decoration: underline;
+  color: white
+}
+.head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.head h1 {
+  margin-right: 1em;
+}
+.head img {
+  height: 50px;
+}
+a {
+  color: var(--main-text-color);
 }

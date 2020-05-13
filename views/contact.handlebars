@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tchitos Mail</title>
+  <link rel="icon" href="public/favicon.ico" type="image/x-icon" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -16,14 +17,20 @@
 
 <body>
   <div class="container">
-    <h1 class="brand"><span>Tchitos</span> Web Design</h1>
+    <p class="ip">This is your api address <em>{{ip}}</em> </p>
+    <div class="head">
+      <h1 class="brand"><span>Tchitos</span> Web Design </h1>
+      <img src="public/logo.png" alt="">
+    </div>
     <div class="wrapper animated bounceInLeft">
       <div class="company-info">
         <h3>Tchitos Web Design</h3>
         <ul>
           <li><i class="fa fa-road"></i> Paris</li>
           <li><i class="fa fa-phone"></i> (555) 555-5555</li>
-          <li><i class="fa fa-envelope"></i> amine.tchitooss@gmail.com</li>
+          <li><i class="fa fa-envelope"></i>
+            <a href="mailto:amine.tchitooss@gmail.com">amine.tchitooss@gmail.com</a>
+          </li>
         </ul>
       </div>
       <div class="contact">
@@ -86,7 +93,7 @@
 
     const $form = $('form')
 
-   // $form.on('submit', submitHandler)
+    // $form.on('submit', submitHandler)
 
     function submitHandler(e) {
 
