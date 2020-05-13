@@ -25,8 +25,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-const allowedOrigins = ['http://localhost:3000'
-    // ,'http://localhost:' + port
+const allowedOrigins = [
+    'https://tchitosmailer.herokuapp.com/'
+    ,'http://localhost:' + port
 ];
 
 app.use(cors({
@@ -78,7 +79,7 @@ app.post('/sendMail', async (req, res) => {
         html: req.body.body
     }
     const response = await sendMail(mailOutput)
-     res.end(JSON.stringify(response))
+    res.end(JSON.stringify(response))
 })
 app.post('/sendText', (req, res) => {
 
@@ -109,7 +110,7 @@ app.post('/sendMailForm', async (req, res) => {
     // });
     const response = await sendMail(mailOptions)
     //  res.end(JSON.stringify(response))
-      res.render('sent', { msg: 'Email has been sent' });
+    res.render('sent', { msg: 'Email has been sent' });
 });
 
 function sendMail(pMail, pForm) {
