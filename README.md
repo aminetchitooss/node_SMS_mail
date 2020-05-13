@@ -24,3 +24,7 @@
 
 >FOR SETTING UP THE GMAIL AUTH PROCESS: --> 
 https://www.youtube.com/watch?v=JJ44WA_eV8E
+
+
+>FOR RESPONSIVE MAILS CHECK THIS: --> 
+https://www.youtube.com/watch?v=FrB8mxdWR7o
