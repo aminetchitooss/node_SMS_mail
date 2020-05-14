@@ -81,9 +81,9 @@ $('.txtFormFields').keyup(function () {
 
 });
 
-const $form = $('form')
+const $form = $('.contact form')
 
-// $form.on('submit', submitHandler)
+$form.on('submit', submitHandler)
 
 function submitHandler(e) {
 
