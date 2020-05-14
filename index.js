@@ -111,10 +111,10 @@ app.post('/sendMailForm', (req, res) => {
     // setup email data with unicode symbols
     let mailOptions = {
         from: process.env.MAIL,
-        to: req.body.email, // list of receivers
+        to: req.body.to, // list of receivers
         subject: 'Node Contact Request', // Subject line
         text: 'Hello from Form', // plain text body
-        html: req.body.message // html body
+        html: req.body.body // html body
     };
 
     // send mail with defined transport object
@@ -168,8 +168,8 @@ function validateMailData(pData) {
 
 function validateMailDataForm(pData) {
     const schema = Joi.object({
-        email: Joi.string().email().required(),
-        message: Joi.string().required()
+        to: Joi.string().email().required(),
+        body: Joi.string().required()
     })
     return schema.validate(pData)
 }

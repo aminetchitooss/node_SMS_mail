@@ -1,4 +1,4 @@
-# This is an example of a node mailer service (a wysiwyg form + Api post) Test it with link above
+# This project is node SMS/email service (a wysiwyg for email ) + IP geolocation
 
 ## 1- Modules used below
 

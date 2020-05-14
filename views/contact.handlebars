@@ -64,11 +64,11 @@
         <form method="POST" action="sendMailForm">
           <p>
             <label>Feel free to test</label>
-            <input id="mail" type="email" name="email" placeholder="Your email here">
+            <input id="mail" type="email" name="to" placeholder="Your email here">
           </p>
           <p class="full">
             <label>Message</label>
-            <textarea name="message"></textarea>
+            <textarea name="body"></textarea>
             <script>
               CKEDITOR.replace('message', {
                 height: 150
