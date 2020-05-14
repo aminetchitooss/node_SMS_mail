@@ -7,7 +7,7 @@ const Joi = require('@hapi/joi');
 var cors = require('cors');
 var fetch = require('fetch').fetchUrl;
 require('dotenv').config();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4200
 const accountSsId = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
 const client = require('twilio')(accountSsId, authToken)
