@@ -23,9 +23,15 @@ function callback(res) {
     document.getElementById('ipFrame').innerHTML = `
     <div class="info">
         <p>Your IP address is <em> ${res.IPv4} </em>, browsing from <em> ${res.country_name}</em> </p>
-        <a target="_blank" href="https://maps.google.com/?q=${res.latitude},${res.longitude}&zoom=3">Click to see location</a>
-    </div>
+        <a class="btn btn-primary text-white" type="button" data-toggle="collapse" data-target="#collapseMap">
+            Click to see map location
+        </a>
+        <div class="collapse" id="collapseMap">
+            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAr3-W5QaQSP93-XOj7c1eWVcWCM_UErlU&q=${res.latitude}%2C${res.longitude}&zoom=12" frameborder="0"></iframe>
+        </div>
+        </div>
         `;
+    // <a target="_blank" href="https://maps.google.com/?q=${res.latitude},${res.longitude}&zoom=3">Click to see location</a>
 
 }
 function checkValuesMail() {
