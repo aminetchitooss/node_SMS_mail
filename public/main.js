@@ -90,9 +90,9 @@ function submitHandler(e) {
     $.ajax({
         type: "POST",
         url: 'sendMailForm',
-        contentType: "application/json; charset=utf-8",
+        // contentType: "application/json; charset=utf-8",
 
-        // dataType: 'jsonp',
+        dataType: 'jsonp',
         data: JSON.stringify($form.serialize().replace('&message=', '&message=' +
             $("iframe").contents().find("body").find("p")[0].outerHTML)),
     }).done(response => {
