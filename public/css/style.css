@@ -104,6 +104,9 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 2fr;
   }
+  .head img {
+    margin-right: 1em;
+  }
   #bg {
     clip-path: polygon(0 0, 86% 0, 47% 100%, 0% 100%);
   }
@@ -147,7 +150,7 @@ button {
 }
 #ipFrame {
   text-align: center;
-  height: 52px;
+  height: 75px;
 }
 #ipFrame em {
   text-decoration: underline;
@@ -163,7 +166,6 @@ button {
 }
 
 .head img {
-  margin-right: 1em;
   height: 50px;
   width: 50px;
 }
