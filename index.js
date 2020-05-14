@@ -100,7 +100,7 @@ app.post('/sendText', async (req, res) => {
     });
 })
 
-app.post('/sendMailForm', async (req, res) => {
+app.post('/sendMailForm', (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) { return res.status(403).send(error.details[0].message) }
 
@@ -111,11 +111,14 @@ app.post('/sendMailForm', async (req, res) => {
         html: req.body.message
     }
 
-    return res.end("done")
-    // const response = await sendMail(mailOutput)
-    // res.end(JSON.stringify(response))
+    return sendMail(mailOutput).then(response => {
 
-
+        if (response == "ok")
+            return res.render('sent', { msg: 'Email has been sent' });
+        else {
+            return res.end(JSON.parse(response))
+        }
+    })
 });
 
 function sendMail(pMail) {
