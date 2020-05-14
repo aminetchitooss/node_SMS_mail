@@ -89,7 +89,7 @@ function submitHandler(e) {
 
     $.ajax({
         type: "POST",
-        url: 'sendMailForm',
+        url: '/sendMailForm',
         contentType: "application/json; charset=utf-8",
 
         // dataType: 'jsonp',
