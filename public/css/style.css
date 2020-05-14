@@ -25,7 +25,7 @@ body {
   max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
-  padding: 2em 2em 0 2em;
+  padding: 0 2em;
 }
 
 ul {
@@ -98,8 +98,14 @@ textarea {
   #bg {
     clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
   }
+  #ipFrame {
+    min-height: 147px;
+  }
 }
 @media (min-width: 700px) {
+  #ipFrame {
+    min-height: 121px;
+  }
   .wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -143,21 +149,23 @@ button {
   cursor: pointer;
 }
 .info {
-  text-align: center
+  text-align: center;
 }
-.info a{
-  font-weight: bolder
+.info a {
+  font-weight: bolder;
 }
 #ipFrame {
   text-align: center;
-  min-height: 75px;
+  padding: 1em 0;
 }
 #ipFrame em {
   text-decoration: underline;
   color: white;
 }
 #ipFrame p {
-  margin: 0;
+  padding-bottom: 10px;
+  padding: 0 1em ;
+
 }
 .head {
   display: flex;
@@ -172,7 +180,8 @@ button {
 a {
   color: var(--main-text-color);
 }
-iframe{
+iframe {
+  margin-top: 10px;
   height: 300px;
-  width: 100%
+  width: 100%;
 }
