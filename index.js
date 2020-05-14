@@ -102,6 +102,7 @@ app.post('/sendText', async (req, res) => {
 })
 
 app.post('/sendMailForm', (req, res) => {
+    return res.end(JSON.stringify(req.body))
     const { error } = validateMailDataForm(req.body)
     if (error) {
         console.log(JSON.stringify(error.message))

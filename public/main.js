@@ -88,12 +88,13 @@ const $form = $('.contact form')
 function submitHandler(e) {
 
     $.ajax({
-        url: '/sendMailForm',
-        type: 'POST',
+        type: "POST",
+        url: 'sendMailForm',
+        contentType: "application/json; charset=utf-8",
+
         // dataType: 'jsonp',
-        contentType: 'application/json',
-        data: $form.serialize().replace('&message=', '&message=' +
-            $("iframe").contents().find("body").find("p")[0].outerHTML),
+        data: JSON.stringify($form.serialize().replace('&message=', '&message=' +
+            $("iframe").contents().find("body").find("p")[0].outerHTML)),
     }).done(response => {
         if (response.split('Email has been sent').length > 1) {
             document.body.innerHTML = response;
