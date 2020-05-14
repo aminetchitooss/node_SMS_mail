@@ -102,30 +102,8 @@ app.post('/sendText', async (req, res) => {
 })
 
 app.post('/sendMailForm', (req, res) => {
-    return res.end(JSON.stringify(req.body))
-    const { error } = validateMailDataForm(req.body)
-    if (error) {
-        console.log(JSON.stringify(error.message))
-        return res.status(403).end(error.message)
-    }
-
-    // setup email data with unicode symbols
-    let mailOptions = {
-        from: process.env.MAIL,
-        to: req.body.email, // list of receivers
-        subject: 'Node Contact Request', // Subject line
-        text: 'Hello from Form', // plain text body
-        html: req.body.message // html body
-    };
-
-    return sendMail(mailOptions).then(response => {
-
-        if (response == "ok")
-            return res.render('sent', { msg: 'Email has been sent' });
-        else {
-            return res.end(JSON.parse(response))
-        }
-    })
+    return res.end('hello')
+    
 });
 
 function sendMail(pMail) {
