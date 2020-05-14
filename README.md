@@ -1,10 +1,10 @@
 # This project is node SMS/email service (a wysiwyg for email ) + IP geolocation
 
-##HOME Page
+## HOME Page
 
 ![](images/home.png)
 
-##HOME Page geo location of IP
+## HOME Page geo location of IP
 
 ![](images/geo.png)
 
