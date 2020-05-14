@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -27,7 +27,10 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 //middle ware config
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json())
 const allowedOrigins = [
     'https://tchitosmailer.herokuapp.com'
     , 'http://localhost:' + port
@@ -101,9 +104,9 @@ app.post('/sendText', async (req, res) => {
     });
 })
 
-app.post('/sendMailForm', (req, res) => {
+app.post('/sendMailForm', jsonParser, (req, res) => {
     return res.end(JSON.stringify(req.body))
-    
+
 });
 
 function sendMail(pMail) {
