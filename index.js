@@ -60,9 +60,8 @@ const transporter = nodeMailer.createTransport({
 });
 
 
-app.get('/', async (req, res) => {
-    const { ip } = await getIp()
-    res.render('contact', { ip });
+app.get('/',  (req, res) => {
+    res.render('contact');
 });
 
 app.post('/sendMail', async (req, res) => {
@@ -102,7 +101,10 @@ app.post('/sendText', async (req, res) => {
 })
 
 app.post('/sendMailForm', (req, res) => {
-    return res.end(JSON.stringify(req.body))
+    const { error } = validateMailData(req.body)
+    if (error) { return res.status(403).send(error.details[0].message) }
+
+    return res.end("done")
 
 });
 
