@@ -104,7 +104,7 @@ app.post('/sendText', async (req, res) => {
     });
 })
 
-app.post('/sendMailForm', jsonParser, (req, res) => {
+app.post('/sendMailForm', (req, res) => {
     return res.end(JSON.stringify(req.body))
 
 });
