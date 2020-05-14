@@ -83,22 +83,26 @@ $('.txtFormFields').keyup(function () {
 
 const $form = $('.contact form')
 
-$form.on('submit', submitHandler)
+// $form.on('submit', submitHandler)
 
 function submitHandler(e) {
 
     $.ajax({
         url: '/sendMailForm',
         type: 'POST',
+        // dataType: 'jsonp',
+        contentType: 'application/json',
         data: $form.serialize().replace('&message=', '&message=' +
-            $("iframe").contents().find("body").find("p")[0].outerHTML)
+            $("iframe").contents().find("body").find("p")[0].outerHTML),
     }).done(response => {
         if (response.split('Email has been sent').length > 1) {
             document.body.innerHTML = response;
         } else {
             console.log(response)
         }
-    }).fail(err => console.log(err))
+    }).fail(err => {
+        console.log(err)
+    })
     e.preventDefault()
 
 }

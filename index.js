@@ -25,7 +25,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 //middle ware config
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 const allowedOrigins = [
