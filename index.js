@@ -26,7 +26,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 //middle ware config
 // app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const allowedOrigins = [
     'https://tchitosmailer.herokuapp.com'
@@ -117,14 +117,6 @@ app.post('/sendMailForm', (req, res) => {
         html: req.body.message // html body
     };
 
-    // send mail with defined transport object
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) {
-    //         return console.log(error);
-    //     }
-    //     res.end('ok')
-    //     res.render('sent', { msg: 'Email has been sent' });
-    // });
     return sendMail(mailOptions).then(response => {
 
         if (response == "ok")
@@ -133,7 +125,6 @@ app.post('/sendMailForm', (req, res) => {
             return res.end(JSON.parse(response))
         }
     })
-    //  res.end(JSON.stringify(response))
 });
 
 function sendMail(pMail) {
