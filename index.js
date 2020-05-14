@@ -101,7 +101,7 @@ app.post('/sendText', async (req, res) => {
     });
 })
 
-app.post('/sendMailForm', (req, res) => {
+app.get('/sendMailForm', (req, res) => {
     return res.end('hello')
     
 });
