@@ -1,4 +1,4 @@
-# This project is node SMS/email service (a wysiwyg for email ) + IP geolocation
+# This project is node SMS/email service (a wysiwyg for email ) + IP geolocation.
 
 ## HOME Page
 
