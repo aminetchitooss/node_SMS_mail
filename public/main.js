@@ -98,7 +98,7 @@ function submitHandler(e) {
         } else {
             console.log(response)
         }
-    })
+    }).fail(err => console.log(err))
     e.preventDefault()
 
 }
