@@ -18,7 +18,9 @@
     "express-handlebars": "^4.0.4",
     "fetch": "^1.1.0",
     "nodemailer": "^6.4.6",
-    "nodemon": "^2.0.3",
-    "xoauth2": "^1.2.0"
+    "twilio": "^3.43.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

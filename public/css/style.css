@@ -4,21 +4,28 @@
 :root {
   --main-bg-color: #74b9ff;
   --main-text-color: #1b3658;
-  --main-border-color: #00cec9;
+  --main-border-color: rgba(104, 120, 148, 0.56);
 }
 
 body {
-  background: var(--main-bg-color);
   color: var(--main-text-color);
   line-height: 1.6;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 1em;
+  margin: 0;
+  height: 100%;
 }
-
+#bg {
+  position: absolute;
+  z-index: -1;
+  background-color: var(--main-bg-color);
+  height: 100%;
+  width: 100vw;
+}
 .container {
   max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
+  padding: 2em 2em 0 2em;
 }
 
 ul {
@@ -74,8 +81,9 @@ ul {
   margin: 1em 0;
 }
 
-.contact form button,
-input {
+button,
+input,
+textarea {
   width: 100%;
   padding: 1em;
   border: 1px solid var(--main-border-color);
@@ -86,12 +94,19 @@ input {
 }
 
 /* LARGE SCREENS */
+@media (max-width: 700px) {
+  #bg {
+    clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
+  }
+}
 @media (min-width: 700px) {
   .wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
   }
-
+  #bg {
+    clip-path: polygon(0 0, 86% 0, 47% 100%, 0% 100%);
+  }
   .wrapper > * {
     padding: 2em;
   }
@@ -126,7 +141,10 @@ button {
 }
 .ip em {
   text-decoration: underline;
-  color: white
+  color: white;
+}
+.ip p {
+  margin: 0;
 }
 .head {
   display: flex;

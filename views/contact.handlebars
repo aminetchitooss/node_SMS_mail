@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <div id="bg"></div>
   <div class="container">
     <p class="ip">This is your api address <em>{{ip}}</em> </p>
     <div class="head">
@@ -31,13 +32,31 @@
           <li><i class="fa fa-envelope"></i>
             <a href="mailto:amine.tchitooss@gmail.com">amine.tchitooss@gmail.com</a>
           </li>
+          <div class="sendPhone">
+            <form action="sendText" method="post">
+              <p>
+                <label>Phone Number</label>
+                <input class="txtFormFields phone" type="text" name="to" placeholder="+33...">
+              </p>
+              <p>
+                <label>Cipher</label>
+                <input class="txtFormFields" type="text" name="cipher" placeholder="secret code">
+              </p>
+              <p>
+                <label>Message</label>
+                <textarea class="txtFormFields" name="body" placeholder="say something" rows="3"></textarea>
+              </p>
+              <button disabled="disabled" id="sendTxt" type="submit">Send Text</button>
+
+            </form>
+          </div>
         </ul>
       </div>
       <div class="contact">
         <form method="POST" action="sendMailForm">
           <p>
             <label>Feel free to test</label>
-            <input type="email" name="email" placeholder="Your email here">
+            <input id="mail" type="email" name="email" placeholder="Your email here">
           </p>
           <p class="full">
             <label>Message</label>
@@ -50,7 +69,7 @@
             </script>
           </p>
           <p>
-            <button disabled="disabled" id="send" type="submit">Submit</button>
+            <button disabled="disabled" id="send" type="submit">Send Email</button>
           </p>
         </form>
       </div>
@@ -58,25 +77,26 @@
   </div>
   <script defer>
     (function () {
-      $('input').keyup(function () {
-        checkValues()
+      $('#mail').keyup(function () {
+        checkValuesMail()
       });
 
       for (var i in CKEDITOR.instances) {
         CKEDITOR.instances[i].on('change', function () {
-          checkValues()
+          checkValuesMail()
         });
       }
 
     })()
 
-    function checkValues() {
+    function checkValuesMail() {
 
       var empty = false;
-      var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
-      $('input').each(function () {
+      var pattern = /^([a-z\d\-\.]+)@([a-z]+)\.[a-z]{2,4}$/
+      $('#mail').each(function () {
         if ($(this).val() == '' || !pattern.test($(this).val())
-          || $("iframe").contents().find("body").text() === "") {
+          || $("iframe").contents().find("body")[0].innerHTML === "<p><br></p>"
+          || $("iframe").contents().find("body")[0].innerHTML === undefined) {
           empty = true;
         }
       });
@@ -90,6 +110,31 @@
 
       }
     }
+
+    $('.txtFormFields').keyup(function () {
+
+      var empty = false;
+      var patternPhone = /^[+]\d{11,12}$/
+      $('.txtFormFields').each(function () {
+        if ($(this).val() == '' ||
+          ($(this).hasClass('phone')
+            && !patternPhone.test($(this).val())
+          )) {
+          empty = true;
+        }
+      });
+
+      $('.txtFormFields.phone').val()
+
+      if (empty) {
+        $('#sendTxt').attr('disabled', 'disabled');
+        $('#sendTxt').removeClass('fullbtn')
+      } else {
+        $('#sendTxt').removeAttr('disabled');
+        $('#sendTxt').addClass('fullbtn')
+      }
+
+    });
 
     const $form = $('form')
 
@@ -112,6 +157,7 @@
       e.preventDefault()
 
     }
+
   </script>
 </body>
 
