@@ -18,10 +18,10 @@
 <body>
   <div id="bg"></div>
   <div class="container">
-    <p class="ip">This is your api address <em>{{ip}}</em> </p>
+    <div id="ipFrame"></div>
     <div class="head">
-      <h1 class="brand"><span>Tchitos</span> Web Design </h1>
       <img src="public/logo.png" alt="">
+      <h1 class="brand"><span>Tchitos</span> Web Design </h1>
     </div>
     <div class="wrapper animated bounceInLeft">
       <div class="company-info">
@@ -75,90 +75,7 @@
       </div>
     </div>
   </div>
-  <script defer>
-    (function () {
-      $('#mail').keyup(function () {
-        checkValuesMail()
-      });
-
-      for (var i in CKEDITOR.instances) {
-        CKEDITOR.instances[i].on('change', function () {
-          checkValuesMail()
-        });
-      }
-
-    })()
-
-    function checkValuesMail() {
-
-      var empty = false;
-      var pattern = /^([a-z\d\-\.]+)@([a-z]+)\.[a-z]{2,4}$/
-      $('#mail').each(function () {
-        if ($(this).val() == '' || !pattern.test($(this).val())
-          || $("iframe").contents().find("body")[0].innerHTML === "<p><br></p>"
-          || $("iframe").contents().find("body")[0].innerHTML === undefined) {
-          empty = true;
-        }
-      });
-
-      if (empty) {
-        $('#send').attr('disabled', 'disabled');
-        $('#send').removeClass('fullbtn')
-      } else {
-        $('#send').removeAttr('disabled');
-        $('#send').addClass('fullbtn')
-
-      }
-    }
-
-    $('.txtFormFields').keyup(function () {
-
-      var empty = false;
-      var patternPhone = /^[+]\d{11,12}$/
-      $('.txtFormFields').each(function () {
-        if ($(this).val() == '' ||
-          ($(this).hasClass('phone')
-            && !patternPhone.test($(this).val())
-          )) {
-          empty = true;
-        }
-      });
-
-      $('.txtFormFields.phone').val()
-
-      if (empty) {
-        $('#sendTxt').attr('disabled', 'disabled');
-        $('#sendTxt').removeClass('fullbtn')
-      } else {
-        $('#sendTxt').removeAttr('disabled');
-        $('#sendTxt').addClass('fullbtn')
-      }
-
-    });
-
-    const $form = $('form')
-
-    // $form.on('submit', submitHandler)
-
-    function submitHandler(e) {
-
-      $.ajax({
-        url: '/sendMailForm',
-        type: 'POST',
-        data: $form.serialize().replace('&message=', '&message=' +
-          $("iframe").contents().find("body").find("p")[0].outerHTML)
-      }).done(response => {
-        if (response.split('Email has been sent').length > 1) {
-          document.body.innerHTML = response;
-        } else {
-          console.log(response)
-        }
-      })
-      e.preventDefault()
-
-    }
-
-  </script>
+  <script src="public/main.js"></script>
 </body>
 
 </html>

@@ -46,7 +46,7 @@ app.use(cors({
     }
 }));
 
-app.listen(port, () => console.log('server running on' + port))
+app.listen(port, () => console.log('server running on ' + port))
 
 const transporter = nodeMailer.createTransport({
     service: 'gmail',
@@ -104,7 +104,8 @@ app.post('/sendText', async (req, res) => {
 app.post('/sendMailForm', (req, res) => {
     const { error } = validateMailDataForm(req.body)
     if (error) {
-        return res.end(JSON.stringify(error))
+        console.log(JSON.stringify(error.message))
+        return res.status(403).end(error.message)
     }
 
     // setup email data with unicode symbols

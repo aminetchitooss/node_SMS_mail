@@ -124,10 +124,10 @@ th {
 }
 
 button {
-  color: white;
-  border: 1px solid black;
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   display: block;
-  background: linear-gradient(to right, var(--main-border-color) 50%, #b1b1b1 50%);
+  background: linear-gradient(to right, var(--main-text-color) 50%, #b1b1b1 50%);
   background-size: 200% 100%;
   background-position: right bottom;
   transition: all 0.5s ease-out;
@@ -135,27 +135,38 @@ button {
 }
 
 .fullbtn {
-  color: black;
+  color: white;
   background-position: left bottom;
   cursor: pointer;
 }
-.ip em {
+.info {
+  text-align: center
+}
+.info a{
+  font-weight: bolder
+}
+#ipFrame {
+  text-align: center;
+  height: 52px;
+}
+#ipFrame em {
   text-decoration: underline;
   color: white;
 }
-.ip p {
+#ipFrame p {
   margin: 0;
+  height: 26px;
 }
 .head {
   display: flex;
   align-items: center;
   margin-bottom: 1em;
 }
-.head h1 {
-  margin-right: 1em;
-}
+
 .head img {
+  margin-right: 1em;
   height: 50px;
+  width: 50px;
 }
 a {
   color: var(--main-text-color);
