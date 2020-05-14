@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -27,27 +27,24 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 //middle ware config
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json())
+
 const allowedOrigins = [
     'https://tchitosmailer.herokuapp.com'
     , 'http://localhost:' + port
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    }
-}));
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         // allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indexOf(origin) === -1) {
+//             var msg = 'The CORS policy for this site does not ' +
+//                 'allow access from the specified Origin.';
+//             return callback(new Error(msg), false);
+//         }
+//         return callback(null, true);
+//     }
+// }));
 
 app.listen(port, () => console.log('server running on ' + port))
 
