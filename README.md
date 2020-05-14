@@ -20,6 +20,10 @@
 > ### nodemailer ###
 >for Node.js applications to allow easy as cake email sending.
 
+> ### Twilio ###
+>for sending texts Twilio is a cloud communications platform
+
+
 ## 2- how to use
   
   Make sure to set up a ".env" config file to set up variables like mail and password
@@ -40,5 +44,5 @@ npm run dev
 https://www.youtube.com/watch?v=JJ44WA_eV8E
 
 
->FOR RESPONSIVE MAILS CHECK THIS: --> 
+>NOTE for responsive HTML mails: --> 
 https://www.youtube.com/watch?v=FrB8mxdWR7o
