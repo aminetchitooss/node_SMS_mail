@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
