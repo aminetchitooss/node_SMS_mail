@@ -1,10 +1,16 @@
-# This project is node SMS/email service (a wysiwyg for email ) + IP geolocation.
+# A node.js project for :
 
-## HOME Page
+> Sending emails with wysiwyg feature 
+
+> Senfing SMS via TWilio service
+
+> Tracing your IP geolocation.
+
+### Home Page
 
 ![](images/home.png)
 
-## HOME Page geo location of IP
+### Toggle location of IP
 
 ![](images/geo.png)
 
