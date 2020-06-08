@@ -45,6 +45,8 @@ npm run dev
 
 ```
 
+> FOR INLINING HTML 
+https://templates.mailchimp.com/resources/inline-css/
 
 >FOR SETTING UP THE GMAIL AUTH PROCESS: --> 
 https://www.youtube.com/watch?v=JJ44WA_eV8E
