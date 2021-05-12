@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "fetch": "^1.1.0",
-    "nodemailer": "^6.4.6",
+    "nodemailer": "^6.4.16",
     "twilio": "^3.43.0"
   },
   "devDependencies": {
